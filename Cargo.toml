@@ -1,0 +1,19 @@
+[package]
+name = "playground"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+bee-protocol = { path = "../bee/bee-protocol" }
+
+futures-channel = "0.3.19"
+tokio = { version = "1", features = ["full"] }
+parking_lot = "*"
+rand = "*"
+
+[dev-dependencies]
+criterion = "0.3"
+
+[[bench]]
+name = "my_benchmark"
+harness = false
