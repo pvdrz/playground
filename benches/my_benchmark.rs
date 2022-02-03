@@ -1,6 +1,6 @@
 use std::sync::Arc;
 
-use playground::{HashMapPeerManager, Peer, PeerId, VecPeerManager, BTreeMapPeerManager};
+use playground::{BTreeMapPeerManager, HashMapPeerManager, Peer, PeerId, VecPeerManager};
 
 use criterion::{black_box, criterion_group, criterion_main, BenchmarkId, Criterion};
 
@@ -142,7 +142,6 @@ fn criterion_benchmark(c: &mut Criterion) {
                     macro_rules! expand {
                         ($peer_manager:ident) => {
                             b.iter(|| {
-                                let $peer_manager = VecPeerManager::new();
                                 for _ in 0..size {
                                     let peer = Peer::random();
                                     $peer_manager.add(Arc::new(peer));
@@ -153,12 +152,15 @@ fn criterion_benchmark(c: &mut Criterion) {
 
                     match kind {
                         "Vec" => {
+                            let peer_manager = VecPeerManager::new();
                             expand!(peer_manager);
                         }
                         "HashMap" => {
+                            let peer_manager = HashMapPeerManager::new();
                             expand!(peer_manager);
                         }
                         "BTreeMap" => {
+                            let peer_manager = BTreeMapPeerManager::new();
                             expand!(peer_manager);
                         }
                         _ => unreachable!(),
