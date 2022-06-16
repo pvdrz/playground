@@ -1,5 +1,5 @@
 fn main() {
-    let point = crate_a::Point {
+    let point = crate_c::Point {
         x: 0,
         y: 0,
         #[cfg(feature = "feat")]

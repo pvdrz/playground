@@ -9,13 +9,5 @@ edition = "2021"
 crate_b = { path = "../crate_b", optional = true }
 crate_c = { path = "../crate_c" }
 
-[lib]
-name = "crate_a"
-path = "src/lib.rs"
-
-[[bin]]
-name = "crate_a_bin"
-path = "src/main.rs"
-
 [features]
 feat = [ "crate_b", "crate_c/feat" ]
